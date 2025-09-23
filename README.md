@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
   # ConnectSphere App Development (Copy, latest)
 
@@ -9,3 +10,7 @@
 
   Run `npm run dev` to start the development server.
   
+=======
+# ConnectSphere--Figma
+This is an extraction from figma build, ai
+>>>>>>> 6595d7b66161939d4c9fcc8a62a9015c4c7fc7bf
