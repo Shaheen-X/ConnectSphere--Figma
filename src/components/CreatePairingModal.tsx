@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { X, Calendar, Clock, MapPin, Users, Zap, User } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
