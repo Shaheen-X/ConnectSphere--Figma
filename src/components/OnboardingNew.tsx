@@ -20,7 +20,7 @@ type OnboardingFlow = 'landing' | 'auth' | 'verification' | 'profile' | 'complet
 type AuthMode = 'login' | 'signup';
 
 // Activity options for selection - ordered by popularity/importance
-const activities = [
+export const activities = [
   'Gym', 'Running', 'Yoga', 'Swimming', 'Cycling', 'Hiking', 'Tennis', 'Football',
   'Basketball', 'Dancing', 'Boxing', 'Walking', 'Golf', 'Team Sports', 'Fitness Classes',
   'Group Workouts', 'Rock Climbing', 'Badminton', 'Table Tennis', 'Martial Arts',
@@ -46,7 +46,7 @@ const punctualityLevels = [
   'Very important', 'Somewhat important', 'Time is just numbers'
 ];
 
-const timeSlots = [
+export const timeSlots = [
   { id: 'morning', label: 'Morning', time: '06:00 - 12:00', icon: '🌅' },
   { id: 'afternoon', label: 'Afternoon', time: '12:00 - 16:00', icon: '☀️' },
   { id: 'evening', label: 'Evening', time: '16:00 - 21:00', icon: '🌆' },

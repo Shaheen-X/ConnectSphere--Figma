@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Copy, Share, X, QrCode, MessageCircle, Mail, Bell, Calendar, User, Minus } from 'lucide-react';
+import { Sparkles, Copy, Share, X, QrCode, MessageCircle, Mail, Bell, Calendar, Minus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
 import { Input } from './ui/input';
@@ -89,9 +89,9 @@ export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloati
                 
                 // Define positions closer to FAB with larger gaps between options
                 const positions = [
-                  { x: -60, y: -35 },   // Invite Others: closer to FAB, bottom-left
-                  { x: -100, y: -85 },  // Share Profile: 40px horizontal, 50px vertical gap
-                  { x: -140, y: -140 }  // Create Event: 40px horizontal, 55px vertical gap
+                  { x: -60, y: -35 },
+                  { x: -100, y: -85 },
+                  { x: -140, y: -140 },
                 ];
                 
                 const position = positions[index] || { x: -90, y: -60 };
