@@ -3,8 +3,8 @@ import { Navigation } from './components/Navigation';
 import { Home } from './components/Home';
 import { Search } from './components/Search';
 import { Messages } from './components/Messages';
-import OneToOneConnections from './components/OneToOneConnections';
 import { Calendar } from './components/Calendar';
+import CreatePairingModal from './components/CreatePairingModal';
 import { ProfileNew } from './components/ProfileNew';
 import { Settings } from './components/Settings';
 import { Notifications } from './components/Notifications';
@@ -19,6 +19,7 @@ export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreateEventModalOpen, setIsCreateEventModalOpen] = useState(false);
+  const [isCreatePairingModalOpen, setIsCreatePairingModalOpen] = useState(false);
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false);
@@ -27,6 +28,10 @@ export default function App() {
 
   const handleCreateEvent = () => {
     setIsCreateEventModalOpen(true);
+  };
+
+  const handleCreatePairing = () => {
+    setIsCreatePairingModalOpen(true);
   };
 
   const handleCreateEventModal = (activityData: any) => {
@@ -42,8 +47,6 @@ export default function App() {
         return <Home onNavigate={setActiveTab} />;
       case 'search':
         return <Search />;
-      case 'connect':
-        return <OneToOneConnections />;
       case 'messages':
         return <Messages />;
       case 'calendar':
@@ -79,13 +82,24 @@ export default function App() {
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Invite Floating Action */}
-      <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />
+      <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} onCreatePairing={handleCreatePairing} />
 
       {/* Create Event Modal */}
       <CreateActivityModal
         isOpen={isCreateEventModalOpen}
         onClose={() => setIsCreateEventModalOpen(false)}
         onCreateActivity={handleCreateEventModal}
+      />
+
+      <CreatePairingModal
+        isOpen={isCreatePairingModalOpen}
+        onClose={() => setIsCreatePairingModalOpen(false)}
+        onCreatePairing={(pairingData) => {
+          toast.success('Pairing request created!', {
+            description: `${pairingData.activity || 'Activity'} • ${pairingData.date} ${pairingData.time}`,
+          });
+          console.log('Created pairing:', pairingData);
+        }}
       />
 
       {/* Toast Notifications */}
