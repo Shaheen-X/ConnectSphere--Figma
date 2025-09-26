@@ -8,6 +8,7 @@ import { toast } from 'sonner@2.0.3';
 interface InviteFloatingActionProps {
   onNavigate?: (tab: string) => void;
   onCreateEvent?: () => void;
+  onCreatePairing?: () => void;
 }
 
 export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloatingActionProps) {
@@ -47,6 +48,16 @@ export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloati
   };
 
   const quickActions = [
+    {
+      id: 'find-partner',
+      icon: User,
+      label: 'Find Partner',
+      action: () => {
+        onCreatePairing?.();
+        setShowInviteOptions(false);
+      },
+      color: 'from-blue-500 to-cyan-400'
+    },
     {
       id: 'create-event',
       icon: Calendar,
@@ -89,9 +100,10 @@ export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloati
                 
                 // Define positions closer to FAB with larger gaps between options
                 const positions = [
-                  { x: -60, y: -35 },   // Invite Others: closer to FAB, bottom-left
-                  { x: -100, y: -85 },  // Share Profile: 40px horizontal, 50px vertical gap
-                  { x: -140, y: -140 }  // Create Event: 40px horizontal, 55px vertical gap
+                  { x: -60, y: -35 },
+                  { x: -100, y: -85 },
+                  { x: -140, y: -140 },
+                  { x: -180, y: -200 },
                 ];
                 
                 const position = positions[index] || { x: -90, y: -60 };
