@@ -9,6 +9,7 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
   const tabs = [
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'search', icon: Search, label: 'Search' },
+    { id: 'connect', icon: UserPlus, label: 'Connect' },
     { id: 'messages', icon: MessageCircle, label: 'Messages' },
     { id: 'calendar', icon: Calendar, label: 'Calendar' },
     { id: 'profile', icon: User, label: 'Profile' },
