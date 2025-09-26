@@ -82,7 +82,7 @@ export default function App() {
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Invite Floating Action */}
-      <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} onCreatePairing={handleCreatePairing} />
+      <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />
 
       {/* Create Event Modal */}
       <CreateActivityModal

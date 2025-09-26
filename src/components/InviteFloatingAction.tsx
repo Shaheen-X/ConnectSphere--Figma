@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useState } from 'react';
-import { Sparkles, Copy, Share, X, QrCode, MessageCircle, Mail, Bell, Calendar, User, Minus } from 'lucide-react';
+import { Sparkles, Copy, Share, X, QrCode, MessageCircle, Mail, Bell, Calendar, Minus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
 import { Input } from './ui/input';
@@ -9,10 +8,9 @@ import { toast } from 'sonner@2.0.3';
 interface InviteFloatingActionProps {
   onNavigate?: (tab: string) => void;
   onCreateEvent?: () => void;
-  onCreatePairing?: () => void;
 }
 
-export function InviteFloatingAction({ onNavigate, onCreateEvent, onCreatePairing }: InviteFloatingActionProps) {
+export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloatingActionProps) {
   const [showInviteOptions, setShowInviteOptions] = useState(false);
   const [showInviteDialog, setShowInviteDialog] = useState(false);
   const [showShareProfile, setShowShareProfile] = useState(false);
@@ -49,16 +47,6 @@ export function InviteFloatingAction({ onNavigate, onCreateEvent, onCreatePairin
   };
 
   const quickActions = [
-    {
-      id: 'find-partner',
-      icon: User,
-      label: 'Find Partner',
-      action: () => {
-        onCreatePairing?.();
-        setShowInviteOptions(false);
-      },
-      color: 'from-blue-500 to-cyan-400'
-    },
     {
       id: 'create-event',
       icon: Calendar,
@@ -104,7 +92,6 @@ export function InviteFloatingAction({ onNavigate, onCreateEvent, onCreatePairin
                   { x: -60, y: -35 },
                   { x: -100, y: -85 },
                   { x: -140, y: -140 },
-                  { x: -180, y: -200 },
                 ];
                 
                 const position = positions[index] || { x: -90, y: -60 };
