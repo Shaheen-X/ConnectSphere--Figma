@@ -12,7 +12,7 @@ interface InviteFloatingActionProps {
   onCreatePairing?: () => void;
 }
 
-export function InviteFloatingAction({ onNavigate, onCreateEvent }: InviteFloatingActionProps) {
+export function InviteFloatingAction({ onNavigate, onCreateEvent, onCreatePairing }: InviteFloatingActionProps) {
   const [showInviteOptions, setShowInviteOptions] = useState(false);
   const [showInviteDialog, setShowInviteDialog] = useState(false);
   const [showShareProfile, setShowShareProfile] = useState(false);
