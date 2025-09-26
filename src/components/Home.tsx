@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import NearbyActivitiesBlock from './NearbyActivitiesBlock';
 import CreateActivityPrompt from './CreateActivityPrompt';
+import CreatePairingPrompt from './CreatePairingPrompt';
 import EventSummaryCard from './EventSummaryCard';
 import CreateActivityModal from './CreateActivityModal';
 import { toast } from 'sonner@2.0.3';
@@ -64,9 +65,10 @@ const mockEvents = [
 
 interface HomeProps {
   onNavigate?: (tab: string) => void;
+  onCreatePairing?: () => void;
 }
 
-export function Home({ onNavigate }: HomeProps = { onNavigate: () => {} }) {
+export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: () => {} }) {
   const [userLevel] = useState(8);
   const [userXP] = useState(1250);
   const [nextLevelXP] = useState(1500);
@@ -192,6 +194,11 @@ export function Home({ onNavigate }: HomeProps = { onNavigate: () => {} }) {
         {/* Nearby Activities */}
         <div>
           <NearbyActivitiesBlock />
+        </div>
+
+        {/* Create Pairing Prompt */}
+        <div>
+          <CreatePairingPrompt onClick={() => onCreatePairing?.()} />
         </div>
 
         {/* Create Activity Prompt */}
