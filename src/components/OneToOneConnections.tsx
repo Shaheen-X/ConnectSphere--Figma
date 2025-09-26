@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Search as SearchIcon, MapPin, UserPlus, MessageCircle, Sparkles } from 'lucide-react@0.487.0';
+import { Search as SearchIcon, MapPin, UserPlus, MessageCircle, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
