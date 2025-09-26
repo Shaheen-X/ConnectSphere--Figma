@@ -44,7 +44,7 @@ export default function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
-        return <Home onNavigate={setActiveTab} />;
+        return <Home onNavigate={setActiveTab} onCreatePairing={handleCreatePairing} />;
       case 'search':
         return <Search />;
       case 'messages':
@@ -58,7 +58,7 @@ export default function App() {
       case 'notifications':
         return <Notifications onNavigate={setActiveTab} />;
       default:
-        return <Home onNavigate={setActiveTab} />;
+        return <Home onNavigate={setActiveTab} onCreatePairing={handleCreatePairing} />;
     }
   };
 
