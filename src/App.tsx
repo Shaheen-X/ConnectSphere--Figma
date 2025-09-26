@@ -3,6 +3,7 @@ import { Navigation } from './components/Navigation';
 import { Home } from './components/Home';
 import { Search } from './components/Search';
 import { Messages } from './components/Messages';
+import OneToOneConnections from './components/OneToOneConnections';
 import { Calendar } from './components/Calendar';
 import { ProfileNew } from './components/ProfileNew';
 import { Settings } from './components/Settings';
@@ -41,6 +42,8 @@ export default function App() {
         return <Home onNavigate={setActiveTab} />;
       case 'search':
         return <Search />;
+      case 'connect':
+        return <OneToOneConnections />;
       case 'messages':
         return <Messages />;
       case 'calendar':
