@@ -1,4 +1,4 @@
-import { Home, Search, MessageCircle, Calendar, User } from 'lucide-react';
+import { Home, Search, MessageCircle, Calendar, User, UserPlus } from 'lucide-react';
 
 interface NavigationProps {
   activeTab: string;
