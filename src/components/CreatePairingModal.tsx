@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { X, MapPin, Users, Zap, User } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { X, MapPin, Users, Zap, User, Plus, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Slider } from './ui/slider';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ChoiceButton } from './ChoiceButton';
 import { activities as onboardingActivities, timeSlots as onboardingTimeSlots } from './OnboardingNew';
@@ -51,19 +52,63 @@ const mockBuddies: Buddy[] = [
 
 const daysOfWeek = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 
+const templates = [
+  {
+    id: 'morning-run',
+    label: 'Morning Run',
+    data: {
+      name: 'Morning Run Partner',
+      activity: 'Running',
+      availableDays: ['Monday', 'Wednesday', 'Friday'],
+      availableTimes: ['morning'],
+    }
+  },
+  {
+    id: 'evening-gym',
+    label: 'Evening Gym',
+    data: {
+      name: 'Evening Gym Buddy',
+      activity: 'Gym',
+      availableDays: ['Tuesday', 'Thursday'],
+      availableTimes: ['evening'],
+    }
+  },
+  {
+    id: 'weekend-hike',
+    label: 'Weekend Hike',
+    data: {
+      name: 'Weekend Hiking',
+      activity: 'Hiking',
+      availableDays: ['Saturday', 'Sunday'],
+      availableTimes: ['morning'],
+    }
+  }
+];
+
 export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }: CreatePairingModalProps) {
   const [formData, setFormData] = useState({
     name: '',
     activity: '',
+    customActivity: '',
     availableDays: [] as string[],
     availableTimes: [] as string[],
+    customTime: '',
     location: '',
     partnerId: '',
+    genderPreference: [] as string[],
+    ageRange: [18, 65] as number[],
   });
 
   const [filteredNameSuggestions, setFilteredNameSuggestions] = useState<string[]>([]);
   const [showNameSuggestions, setShowNameSuggestions] = useState(false);
   const [showBuddyList, setShowBuddyList] = useState(false);
+  const [buddySearch, setBuddySearch] = useState('');
+
+  const filteredBuddies = useMemo(() => {
+    if (!buddySearch.trim()) return mockBuddies;
+    const q = buddySearch.toLowerCase();
+    return mockBuddies.filter(b => `${b.name} ${b.username}`.toLowerCase().includes(q));
+  }, [buddySearch]);
 
   const handleNameChange = (value: string) => {
     if (value.length <= 30) {
@@ -94,13 +139,46 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
     }));
   };
 
+  const toggleGenderPref = (pref: string) => {
+    setFormData(prev => {
+      const current = prev.genderPreference;
+      if (pref === 'Everyone') {
+        return { ...prev, genderPreference: current.includes('Everyone') ? [] : ['Everyone'] };
+      }
+      const withoutEveryone = current.filter(p => p !== 'Everyone');
+      const next = withoutEveryone.includes(pref)
+        ? withoutEveryone.filter(p => p !== pref)
+        : [...withoutEveryone, pref];
+      return { ...prev, genderPreference: next };
+    });
+  };
+
   const handleSubmit = () => {
-    onCreatePairing({ ...formData, createdAt: new Date().toISOString() });
+    const payload = {
+      ...formData,
+      activity: formData.activity === 'Other' ? formData.customActivity.trim() : formData.activity,
+      createdAt: new Date().toISOString(),
+    };
+    onCreatePairing(payload);
     onClose();
-    setFormData({ name: '', activity: '', availableDays: [], availableTimes: [], location: '', partnerId: '' });
+    setFormData({
+      name: '',
+      activity: '',
+      customActivity: '',
+      availableDays: [],
+      availableTimes: [],
+      customTime: '',
+      location: '',
+      partnerId: '',
+      genderPreference: [],
+      ageRange: [18, 65],
+    });
     setShowNameSuggestions(false);
     setFilteredNameSuggestions([]);
+    setBuddySearch('');
   };
+
+  const canSubmit = formData.name && (formData.activity && (formData.activity !== 'Other' || formData.customActivity.trim())) && formData.availableDays.length > 0 && formData.availableTimes.length > 0;
 
   return (
     <Dialog open={isOpen}>
@@ -122,6 +200,29 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
           </DialogHeader>
 
           <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 max-h-[calc(95vh-140px)]">
+            {/* Quick templates */}
+            <div className="space-y-2">
+              <Label className="text-body font-semibold">Quick templates</Label>
+              <div className="flex flex-wrap gap-2">
+                {templates.map(t => (
+                  <ChoiceButton
+                    key={t.id}
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      name: t.data.name,
+                      activity: t.data.activity,
+                      customActivity: '',
+                      availableDays: t.data.availableDays,
+                      availableTimes: t.data.availableTimes,
+                    }))}
+                    className="px-3 py-2 text-sm"
+                  >
+                    {t.label}
+                  </ChoiceButton>
+                ))}
+              </div>
+            </div>
+
             {/* Name with suggestions */}
             <div className="space-y-2">
               <Label className="text-body font-semibold">Name</Label>
@@ -147,19 +248,38 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
               </div>
             </div>
 
-            {/* Activity Type */}
+            {/* Activity Type with Other */}
             <div className="space-y-2">
               <Label className="text-body font-semibold">Activity</Label>
-              <Select value={formData.activity} onValueChange={(value) => setFormData((p) => ({ ...p, activity: value }))}>
+              <Select
+                value={formData.activity}
+                onValueChange={(value) => setFormData((p) => ({ ...p, activity: value, ...(value !== 'Other' ? { customActivity: '' } : {}) }))}
+              >
                 <SelectTrigger className="glass-card border-white/20 rounded-xl h-12">
                   <SelectValue placeholder="Select activity" />
                 </SelectTrigger>
                 <SelectContent className="glass-card border-white/20 max-h-48 overflow-y-auto">
-                  {onboardingActivities.map((type) => (
+                  {[...onboardingActivities, 'Other'].map((type) => (
                     <SelectItem key={type} value={type}>{type}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+              {formData.activity === 'Other' && (
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="Type custom activity"
+                    value={formData.customActivity}
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      if (v.length <= 30) setFormData(prev => ({ ...prev, customActivity: v }));
+                    }}
+                    maxLength={30}
+                    className="glass-card border-white/20 rounded-xl h-12 pr-12"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-subtext">{formData.customActivity.length}/30</div>
+                </div>
+              )}
             </div>
 
             {/* Availability - days */}
@@ -196,6 +316,78 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
                   </ChoiceButton>
                 ))}
               </div>
+              <div className="flex items-center space-x-3">
+                <Input
+                  placeholder="Custom time preference"
+                  value={formData.customTime}
+                  onChange={(e) => setFormData(prev => ({ ...prev, customTime: e.target.value }))}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && formData.customTime.trim()) {
+                      setFormData(prev => ({
+                        ...prev,
+                        availableTimes: [...prev.availableTimes, prev.customTime.trim()],
+                        customTime: ''
+                      }));
+                    }
+                  }}
+                  className="glass-card border-white/20 rounded-xl h-12"
+                />
+                <ChoiceButton
+                  variant="compact"
+                  onClick={() => {
+                    if (formData.customTime.trim()) {
+                      setFormData(prev => ({
+                        ...prev,
+                        availableTimes: [...prev.availableTimes, prev.customTime.trim()],
+                        customTime: ''
+                      }));
+                    }
+                  }}
+                  className="w-12 h-12"
+                >
+                  <Plus size={16} />
+                </ChoiceButton>
+              </div>
+            </div>
+
+            {/* Gender preference */}
+            <div className="space-y-2">
+              <Label className="text-body font-semibold">Gender preference</Label>
+              <div className="flex flex-wrap gap-2">
+                {['Men', 'Women', 'Everyone'].map((g) => (
+                  <ChoiceButton
+                    key={g}
+                    selected={formData.genderPreference.includes(g)}
+                    onClick={() => toggleGenderPref(g)}
+                    className="text-sm px-3 py-2"
+                  >
+                    {g}
+                  </ChoiceButton>
+                ))}
+              </div>
+            </div>
+
+            {/* Age preference */}
+            <div className="space-y-2">
+              <Label className="text-body font-semibold">Age preference</Label>
+              <div className="glass-card p-4">
+                <div className="text-center mb-4">
+                  <div className="text-lg font-semibold gradient-text">{formData.ageRange[0]} - {formData.ageRange[1]} years</div>
+                </div>
+                <Slider
+                  value={formData.ageRange}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, ageRange: value }))}
+                  max={80}
+                  min={18}
+                  step={1}
+                  className="mb-2"
+                />
+                <div className="flex justify-between text-subtext text-xs">
+                  <span>18</span>
+                  <span>50</span>
+                  <span>80</span>
+                </div>
+              </div>
             </div>
 
             {/* Location (optional) */}
@@ -211,8 +403,17 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
                 <Users className="w-4 h-4 mr-2" /> Choose from connections
               </Button>
               {showBuddyList && (
-                <div className="space-y-2">
-                  {mockBuddies.map((b) => (
+                <div className="space-y-3">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9AA1A9] w-4 h-4" />
+                    <Input
+                      placeholder="Search connections"
+                      value={buddySearch}
+                      onChange={(e) => setBuddySearch(e.target.value)}
+                      className="pl-9 glass-card border-white/20 rounded-xl h-10"
+                    />
+                  </div>
+                  {filteredBuddies.map((b) => (
                     <button key={b.id} onClick={() => setFormData((p) => ({ ...p, partnerId: p.partnerId === b.id ? '' : b.id }))} className={`w-full glass-card p-3 rounded-xl transition-all duration-200 hover:shadow-lg ${formData.partnerId === b.id ? 'ring-2 ring-blue-500 bg-gradient-to-r from-blue-50 to-cyan-50' : 'hover:bg-white/60'}`}>
                       <div className="flex items-center gap-3">
                         <ImageWithFallback src={b.avatar} alt={b.name} className="w-10 h-10 rounded-full object-cover" />
@@ -234,7 +435,7 @@ export default function CreatePairingModal({ isOpen, onClose, onCreatePairing }:
           </div>
 
           <div className="px-6 py-4 border-t border-white/20">
-            <Button onClick={handleSubmit} disabled={!formData.name || !formData.activity || formData.availableDays.length === 0 || formData.availableTimes.length === 0} className="w-full bg-white text-gray-700 rounded-full py-3 font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-200" style={{ fontSize: '17px' }}>
+            <Button onClick={handleSubmit} disabled={!canSubmit} className="w-full bg-white text-gray-700 rounded-full py-3 font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-200 text-[17px]">
               <Zap className="mr-2 w-5 h-5" /> Create Pairing Request
             </Button>
           </div>
