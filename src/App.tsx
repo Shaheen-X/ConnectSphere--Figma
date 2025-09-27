@@ -12,6 +12,7 @@ import { Onboarding } from './components/OnboardingNew';
 import { Toaster } from './components/ui/sonner';
 import { InviteFloatingAction } from './components/InviteFloatingAction';
 import CreateActivityModal from './components/CreateActivityModal';
+import CreateEventChooserModal from './components/CreateEventChooserModal';
 import { toast } from 'sonner@2.0.3';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreateEventModalOpen, setIsCreateEventModalOpen] = useState(false);
   const [isCreatePairingModalOpen, setIsCreatePairingModalOpen] = useState(false);
+  const [isCreateChooserOpen, setIsCreateChooserOpen] = useState(false);
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false);
@@ -27,7 +29,7 @@ export default function App() {
   };
 
   const handleCreateEvent = () => {
-    setIsCreateEventModalOpen(true);
+    setIsCreateChooserOpen(true);
   };
 
   const handleCreatePairing = () => {
@@ -44,7 +46,7 @@ export default function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
-        return <Home onNavigate={setActiveTab} onCreatePairing={handleCreatePairing} />;
+        return <Home onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />;
       case 'search':
         return <Search />;
       case 'messages':
@@ -58,7 +60,7 @@ export default function App() {
       case 'notifications':
         return <Notifications onNavigate={setActiveTab} />;
       default:
-        return <Home onNavigate={setActiveTab} onCreatePairing={handleCreatePairing} />;
+        return <Home onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />;
     }
   };
 
@@ -83,6 +85,14 @@ export default function App() {
 
       {/* Invite Floating Action */}
       <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />
+
+      {/* Create Event Chooser */}
+      <CreateEventChooserModal
+        isOpen={isCreateChooserOpen}
+        onClose={() => setIsCreateChooserOpen(false)}
+        onChoosePairing={() => { setIsCreateChooserOpen(false); setIsCreatePairingModalOpen(true); }}
+        onChooseGroup={() => { setIsCreateChooserOpen(false); setIsCreateEventModalOpen(true); }}
+      />
 
       {/* Create Event Modal */}
       <CreateActivityModal

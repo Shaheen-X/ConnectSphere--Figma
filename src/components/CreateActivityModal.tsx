@@ -285,7 +285,7 @@ export const CreateActivityModal: React.FC<CreateActivityModalProps> = ({
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
-                <DialogTitle className="text-section-header font-semibold">Create Event</DialogTitle>
+                <DialogTitle className="text-section-header font-semibold">Create Group Activity</DialogTitle>
               </div>
               <Button
                 variant="ghost"
@@ -532,7 +532,7 @@ export const CreateActivityModal: React.FC<CreateActivityModalProps> = ({
               style={{ fontSize: '17px' }}
             >
               <Zap className="mr-2 w-5 h-5" />
-              Create Event
+              Create Activity
             </Button>
           </div>
         </div>

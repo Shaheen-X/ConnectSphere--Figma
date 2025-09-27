@@ -5,11 +5,8 @@ import { Badge } from './ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import NearbyActivitiesBlock from './NearbyActivitiesBlock';
-import CreateActivityPrompt from './CreateActivityPrompt';
-import CreatePairingPrompt from './CreatePairingPrompt';
+import CreateEventPrompt from './CreateEventPrompt';
 import EventSummaryCard from './EventSummaryCard';
-import CreateActivityModal from './CreateActivityModal';
-import { toast } from 'sonner@2.0.3';
 
 // Mock data
 const upcomingActivities = [
@@ -65,14 +62,13 @@ const mockEvents = [
 
 interface HomeProps {
   onNavigate?: (tab: string) => void;
-  onCreatePairing?: () => void;
+  onCreateEvent?: () => void;
 }
 
-export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: () => {} }) {
+export function Home({ onNavigate, onCreateEvent }: HomeProps = { onNavigate: () => {} }) {
   const [userLevel] = useState(8);
   const [userXP] = useState(1250);
   const [nextLevelXP] = useState(1500);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleViewAllEvents = () => {
     onNavigate?.('calendar');
@@ -82,16 +78,7 @@ export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: 
     onNavigate?.('calendar');
   };
 
-  const handleCreateActivity = () => {
-    setIsCreateModalOpen(true);
-  };
 
-  const handleCreateActivityModal = (activityData: any) => {
-    toast.success('Activity created successfully!', {
-      description: `${activityData.title} has been scheduled for ${activityData.date}`,
-    });
-    console.log('Created activity:', activityData);
-  };
 
   return (
     <div className="h-full bg-gradient-to-br from-slate-50 to-gray-100 overflow-y-auto">
@@ -196,26 +183,15 @@ export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: 
           <NearbyActivitiesBlock />
         </div>
 
-        {/* Create Pairing Prompt */}
+        {/* Create Event Prompt */}
         <div>
-          <CreatePairingPrompt onClick={() => onCreatePairing?.()} />
-        </div>
-
-        {/* Create Activity Prompt */}
-        <div>
-          <CreateActivityPrompt onClick={handleCreateActivity} />
+          <CreateEventPrompt onClick={() => onCreateEvent?.()} />
         </div>
 
         {/* Bottom padding for navigation */}
         <div className="h-20"></div>
       </div>
 
-      {/* Create Activity Modal */}
-      <CreateActivityModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        onCreateActivity={handleCreateActivityModal}
-      />
     </div>
   );
 }
