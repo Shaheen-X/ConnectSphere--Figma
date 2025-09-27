@@ -7,7 +7,6 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import NearbyActivitiesBlock from './NearbyActivitiesBlock';
 import CreateEventPrompt from './CreateEventPrompt';
 import EventSummaryCard from './EventSummaryCard';
-import { toast } from 'sonner@2.0.3';
 
 // Mock data
 const upcomingActivities = [
