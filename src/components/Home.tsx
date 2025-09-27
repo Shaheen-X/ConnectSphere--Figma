@@ -9,6 +9,7 @@ import CreateActivityPrompt from './CreateActivityPrompt';
 import CreatePairingPrompt from './CreatePairingPrompt';
 import EventSummaryCard from './EventSummaryCard';
 import CreateActivityModal from './CreateActivityModal';
+import CreateTypeChooserModal from './CreateTypeChooserModal';
 import { toast } from 'sonner@2.0.3';
 
 // Mock data
@@ -73,6 +74,7 @@ export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: 
   const [userXP] = useState(1250);
   const [nextLevelXP] = useState(1500);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isCreateChooserOpen, setIsCreateChooserOpen] = useState(false);
 
   const handleViewAllEvents = () => {
     onNavigate?.('calendar');
@@ -83,7 +85,7 @@ export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: 
   };
 
   const handleCreateActivity = () => {
-    setIsCreateModalOpen(true);
+    setIsCreateChooserOpen(true);
   };
 
   const handleCreateActivityModal = (activityData: any) => {
@@ -209,6 +211,20 @@ export function Home({ onNavigate, onCreatePairing }: HomeProps = { onNavigate: 
         {/* Bottom padding for navigation */}
         <div className="h-20"></div>
       </div>
+
+      {/* Create Type Chooser */}
+      <CreateTypeChooserModal
+        isOpen={isCreateChooserOpen}
+        onClose={() => setIsCreateChooserOpen(false)}
+        onChoosePairing={() => {
+          setIsCreateChooserOpen(false);
+          onCreatePairing?.();
+        }}
+        onChooseGroup={() => {
+          setIsCreateChooserOpen(false);
+          setIsCreateModalOpen(true);
+        }}
+      />
 
       {/* Create Activity Modal */}
       <CreateActivityModal

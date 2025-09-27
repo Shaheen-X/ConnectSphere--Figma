@@ -12,6 +12,7 @@ import { Onboarding } from './components/OnboardingNew';
 import { Toaster } from './components/ui/sonner';
 import { InviteFloatingAction } from './components/InviteFloatingAction';
 import CreateActivityModal from './components/CreateActivityModal';
+import CreateTypeChooserModal from './components/CreateTypeChooserModal';
 import { toast } from 'sonner@2.0.3';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreateEventModalOpen, setIsCreateEventModalOpen] = useState(false);
   const [isCreatePairingModalOpen, setIsCreatePairingModalOpen] = useState(false);
+  const [isCreateChooserOpen, setIsCreateChooserOpen] = useState(false);
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false);
@@ -27,7 +29,7 @@ export default function App() {
   };
 
   const handleCreateEvent = () => {
-    setIsCreateEventModalOpen(true);
+    setIsCreateChooserOpen(true);
   };
 
   const handleCreatePairing = () => {
@@ -83,6 +85,14 @@ export default function App() {
 
       {/* Invite Floating Action */}
       <InviteFloatingAction onNavigate={setActiveTab} onCreateEvent={handleCreateEvent} />
+
+      {/* Create Type Chooser */}
+      <CreateTypeChooserModal
+        isOpen={isCreateChooserOpen}
+        onClose={() => setIsCreateChooserOpen(false)}
+        onChoosePairing={() => setIsCreatePairingModalOpen(true)}
+        onChooseGroup={() => setIsCreateEventModalOpen(true)}
+      />
 
       {/* Create Event Modal */}
       <CreateActivityModal
