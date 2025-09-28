@@ -145,8 +145,11 @@ const groups = [
     user: {
       name: "Weekend Runners Club",
       image: "https://images.unsplash.com/photo-1546484959-f9a53db89f9b?w=200&h=200&fit=crop&crop=faces",
-      location: "City Trails",
-      distance: "1.7 miles away"
+      location: "City Trails, Austin, TX",
+      distance: "1.7 miles away",
+      city: "Austin",
+      county: "Travis",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -159,8 +162,11 @@ const groups = [
     user: {
       name: "Park Yoga Collective",
       image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&crop=faces",
-      location: "Lakeside Park",
-      distance: "2.5 miles away"
+      location: "Lakeside Park, Oakland, CA",
+      distance: "2.5 miles away",
+      city: "Oakland",
+      county: "Alameda",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -173,8 +179,11 @@ const groups = [
     user: {
       name: "City Cyclists",
       image: "https://images.unsplash.com/photo-1520975954732-35dd22a4b0bb?w=200&h=200&fit=crop&crop=faces",
-      location: "Downtown Plaza",
-      distance: "1.3 miles away"
+      location: "Downtown Plaza, San Jose, CA",
+      distance: "1.3 miles away",
+      city: "San Jose",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -187,8 +196,11 @@ const groups = [
     user: {
       name: "Community Hoopers",
       image: "https://images.unsplash.com/photo-1521417531059-74247bdfb7a9?w=200&h=200&fit=crop&crop=faces",
-      location: "Community Center",
-      distance: "0.5 miles away"
+      location: "Community Center, Palo Alto, CA",
+      distance: "0.5 miles away",
+      city: "Palo Alto",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
