@@ -449,6 +449,12 @@
   }
 }
 
+@layer components {
+  .triangular-avatar {
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  }
+}
+
 html {
   font-size: var(--font-size);
 }
