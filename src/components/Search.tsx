@@ -4,14 +4,14 @@ import ActivityCard from "./ActivityCard";
 import ActivityFilter from "./ActivityFilter";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Search as SearchIcon, Filter, Users, Briefcase, MapPin } from "lucide-react";
-import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
+import { Search as SearchIcon, Filter, Users, MapPin } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
 } from "./ui/pagination";
 import { useIsMobile } from "../hooks/use-mobile";
 import {
@@ -116,61 +116,61 @@ const activities = [
   }
 ];
 
-const professionals = [
+const groups = [
   {
     user: {
-      name: "Coach Thomas",
-      image: "https://i.pravatar.cc/150?img=12",
-      location: "Downtown Fitness",
-      distance: "1.5 miles away"
+      name: "Weekend Runners Club",
+      image: "https://images.unsplash.com/photo-1546484959-f9a53db89f9b?w=200&h=200&fit=crop&crop=faces",
+      location: "City Trails",
+      distance: "1.7 miles away"
     },
     activity: {
-      type: "Personal Trainer",
-      title: "Certified Strength & Conditioning Coach",
-      time: "Available Mon-Fri, flexible hours",
-      details: "10+ years experience. Specializing in strength training, weight loss, and athletic performance. NASM certified."
+      type: "Group Activity",
+      title: "Morning Jog Buddy Needed",
+      time: "Weekdays, 6:30 AM - 7:30 AM",
+      details: "Looking for friendly runners to join 3-5 mile morning runs at a conversational pace. All levels welcome."
     }
   },
   {
     user: {
-      name: "Dr. Lisa Wong",
-      image: "https://i.pravatar.cc/150?img=45",
-      location: "Sports Medicine Clinic",
-      distance: "3.2 miles away"
+      name: "Park Yoga Collective",
+      image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&crop=faces",
+      location: "Lakeside Park",
+      distance: "2.5 miles away"
     },
     activity: {
-      type: "Sports Nutritionist",
-      title: "PhD in Sports Nutrition",
-      time: "By appointment only",
-      details: "Helping athletes optimize performance through personalized nutrition plans. Sports dietitian certification."
+      type: "Group Activity",
+      title: "Outdoor Yoga Sessions",
+      time: "Weekends, 9:00 AM - 10:30 AM",
+      details: "Relaxed, beginner-friendly yoga by the lake. Bring your mat and water. Group size 6-10."
     }
   },
   {
     user: {
-      name: "Mark Johnson",
-      image: "https://i.pravatar.cc/150?img=67",
-      location: "Elite Training Center",
-      distance: "0.7 miles away"
+      name: "City Cyclists",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22a4b0bb?w=200&h=200&fit=crop&crop=faces",
+      location: "Downtown Plaza",
+      distance: "1.3 miles away"
     },
     activity: {
-      type: "Swimming Coach",
-      title: "Former Olympic Swimmer",
-      time: "Evenings and weekends",
-      details: "Technique-focused coaching for all levels. Competitive swimming expertise. Group and private lessons available."
+      type: "Group Activity",
+      title: "Weekend Cycling Group",
+      time: "Saturdays, 7:00 AM - 10:00 AM",
+      details: "Moderate-paced 25-30 mile ride with coffee stop. Road bikes recommended. No-drop policy."
     }
   },
   {
     user: {
-      name: "Sofia Martinez",
-      image: "https://i.pravatar.cc/150?img=33",
-      location: "Yoga Studio Central",
-      distance: "1.1 miles away"
+      name: "Community Hoopers",
+      image: "https://images.unsplash.com/photo-1521417531059-74247bdfb7a9?w=200&h=200&fit=crop&crop=faces",
+      location: "Community Center",
+      distance: "0.5 miles away"
     },
     activity: {
-      type: "Yoga Instructor",
-      title: "RYT-500 Certified",
-      time: "Morning and evening classes",
-      details: "Specializing in Vinyasa, Hatha, and Restorative Yoga. Personalized approach to meet individual needs."
+      type: "Group Activity",
+      title: "Pickup Basketball Games",
+      time: "Tues & Thurs, 6:00 PM - 8:00 PM",
+      details: "Casual 3v3 and 5v5 runs. All skill levels welcome. Bring a light and dark shirt."
     }
   }
 ];
@@ -238,7 +238,7 @@ export function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("partners");
   const [filteredPartners, setFilteredPartners] = useState(activities);
-  const [filteredProfessionals, setFilteredProfessionals] = useState(professionals);
+  const [filteredGroups, setFilteredGroups] = useState(groups);
   const [filteredPlaces, setFilteredPlaces] = useState(places);
   const [currentPage, setCurrentPage] = useState(1);
   const isMobile = useIsMobile();
@@ -257,14 +257,14 @@ export function Search() {
     });
     setFilteredPartners(filteredPartnersList);
     
-    const filteredProfessionalsList = professionals.filter(item => {
+    const filteredGroupsList = groups.filter(item => {
       const activityText = `${item.activity.type} ${item.activity.title} ${item.activity.details}`;
       const userText = `${item.user.name} ${item.user.location}`;
       const searchText = (activityText + userText).toLowerCase();
-      
+
       return searchText.includes(term.toLowerCase());
     });
-    setFilteredProfessionals(filteredProfessionalsList);
+    setFilteredGroups(filteredGroupsList);
     
     const filteredPlacesList = places.filter(item => {
       const activityText = `${item.activity.type} ${item.activity.title} ${item.activity.details}`;
@@ -284,8 +284,8 @@ export function Search() {
     
     if (activeTab === "partners") {
       return filteredPartners.slice(indexOfFirstItem, indexOfLastItem);
-    } else if (activeTab === "professionals") {
-      return filteredProfessionals.slice(indexOfFirstItem, indexOfLastItem);
+    } else if (activeTab === "groups") {
+      return filteredGroups.slice(indexOfFirstItem, indexOfLastItem);
     } else {
       return filteredPlaces.slice(indexOfFirstItem, indexOfLastItem);
     }
@@ -294,8 +294,8 @@ export function Search() {
   const getTotalPages = () => {
     if (activeTab === "partners") {
       return Math.ceil(filteredPartners.length / itemsPerPage);
-    } else if (activeTab === "professionals") {
-      return Math.ceil(filteredProfessionals.length / itemsPerPage);
+    } else if (activeTab === "groups") {
+      return Math.ceil(filteredGroups.length / itemsPerPage);
     } else {
       return Math.ceil(filteredPlaces.length / itemsPerPage);
     }
@@ -307,8 +307,8 @@ export function Search() {
   const getPlaceholderText = () => {
     if (activeTab === "partners") {
       return "Search workout partners...";
-    } else if (activeTab === "professionals") {
-      return "Search coaches, trainers...";
+    } else if (activeTab === "groups") {
+      return "Search group activities...";
     } else {
       return "Search places, events...";
     }
@@ -344,24 +344,24 @@ export function Search() {
         
         <Tabs defaultValue="partners" value={activeTab} onValueChange={setActiveTab} className="mb-6">
           <TabsList className="w-full grid grid-cols-3 mb-4 glass-card border-white/20 rounded-xl">
-            <TabsTrigger 
-              value="partners" 
+            <TabsTrigger
+              value="partners"
               className="flex items-center gap-1.5 text-subtext data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-400 data-[state=active]:text-white rounded-xl text-tag"
             >
               <Users className="h-4 w-4" />
               <span className="hidden md:inline">Workout Partners</span>
               <span className="inline md:hidden">Partners</span>
             </TabsTrigger>
-            <TabsTrigger 
-              value="professionals" 
+            <TabsTrigger
+              value="groups"
               className="flex items-center gap-1.5 text-subtext data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-400 data-[state=active]:text-white rounded-xl text-tag"
             >
-              <Briefcase className="h-4 w-4" />
-              <span className="hidden md:inline">Professionals</span>
-              <span className="inline md:hidden">Pros</span>
+              <Users className="h-4 w-4" />
+              <span className="hidden md:inline">Groups</span>
+              <span className="inline md:hidden">Groups</span>
             </TabsTrigger>
-            <TabsTrigger 
-              value="places" 
+            <TabsTrigger
+              value="places"
               className="flex items-center gap-1.5 text-subtext data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-400 data-[state=active]:text-white rounded-xl text-tag"
             >
               <MapPin className="h-4 w-4" />
@@ -397,10 +397,10 @@ export function Search() {
                     {currentItems.map((item, index) => (
                       <ActivityCard 
                         key={index} 
-                        user={item.user} 
-                        activity={item.activity} 
-                        cardType={activeTab === 'partners' ? 'partner' : 
-                                 activeTab === 'professionals' ? 'professional' : 'place'}
+                        user={item.user}
+                        activity={item.activity}
+                        cardType={activeTab === 'partners' ? 'partner' :
+                                 activeTab === 'groups' ? 'group' : 'place'}
                       />
                     ))}
                   </div>
