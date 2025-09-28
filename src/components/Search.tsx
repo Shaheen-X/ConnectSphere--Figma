@@ -34,8 +34,12 @@ const activities = [
     user: {
       name: "Sarah Johnson",
       image: "https://i.pravatar.cc/150?img=33",
-      location: "Central Park",
-      distance: "0.8 miles away"
+      location: "Central Park, New York, NY",
+      distance: "0.8 miles away",
+      age: 28,
+      city: "New York",
+      county: "Manhattan",
+      countryCode: "US"
     },
     activity: {
       type: "Running",
@@ -48,8 +52,12 @@ const activities = [
     user: {
       name: "Mike Chen",
       image: "https://i.pravatar.cc/150?img=12",
-      location: "Fitness Center",
-      distance: "1.2 miles away"
+      location: "24/7 Fitness, San Jose, CA",
+      distance: "1.2 miles away",
+      age: 31,
+      city: "San Jose",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Gym Workout",
@@ -62,8 +70,12 @@ const activities = [
     user: {
       name: "Emma Wilson",
       image: "https://i.pravatar.cc/150?img=5",
-      location: "Lakeside Park",
-      distance: "2.5 miles away"
+      location: "Lakeside Park, Oakland, CA",
+      distance: "2.5 miles away",
+      age: 26,
+      city: "Oakland",
+      county: "Alameda",
+      countryCode: "US"
     },
     activity: {
       type: "Yoga",
@@ -76,8 +88,12 @@ const activities = [
     user: {
       name: "David Rodriguez",
       image: "https://i.pravatar.cc/150?img=67",
-      location: "City Trails",
-      distance: "1.7 miles away"
+      location: "City Trails, Austin, TX",
+      distance: "1.7 miles away",
+      age: 34,
+      city: "Austin",
+      county: "Travis",
+      countryCode: "US"
     },
     activity: {
       type: "Cycling",
@@ -90,8 +106,12 @@ const activities = [
     user: {
       name: "Jennifer Lee",
       image: "https://i.pravatar.cc/150?img=45",
-      location: "Mountain View",
-      distance: "3.9 miles away"
+      location: "Shoreline Trail, Mountain View, CA",
+      distance: "3.9 miles away",
+      age: 29,
+      city: "Mountain View",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Hiking",
@@ -104,8 +124,12 @@ const activities = [
     user: {
       name: "Alex Thomas",
       image: "https://i.pravatar.cc/150?img=68",
-      location: "Community Center",
-      distance: "0.5 miles away"
+      location: "Community Center, Palo Alto, CA",
+      distance: "0.5 miles away",
+      age: 27,
+      city: "Palo Alto",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Basketball",
@@ -121,8 +145,11 @@ const groups = [
     user: {
       name: "Weekend Runners Club",
       image: "https://images.unsplash.com/photo-1546484959-f9a53db89f9b?w=200&h=200&fit=crop&crop=faces",
-      location: "City Trails",
-      distance: "1.7 miles away"
+      location: "City Trails, Austin, TX",
+      distance: "1.7 miles away",
+      city: "Austin",
+      county: "Travis",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -135,8 +162,11 @@ const groups = [
     user: {
       name: "Park Yoga Collective",
       image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&crop=faces",
-      location: "Lakeside Park",
-      distance: "2.5 miles away"
+      location: "Lakeside Park, Oakland, CA",
+      distance: "2.5 miles away",
+      city: "Oakland",
+      county: "Alameda",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -149,8 +179,11 @@ const groups = [
     user: {
       name: "City Cyclists",
       image: "https://images.unsplash.com/photo-1520975954732-35dd22a4b0bb?w=200&h=200&fit=crop&crop=faces",
-      location: "Downtown Plaza",
-      distance: "1.3 miles away"
+      location: "Downtown Plaza, San Jose, CA",
+      distance: "1.3 miles away",
+      city: "San Jose",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -163,8 +196,11 @@ const groups = [
     user: {
       name: "Community Hoopers",
       image: "https://images.unsplash.com/photo-1521417531059-74247bdfb7a9?w=200&h=200&fit=crop&crop=faces",
-      location: "Community Center",
-      distance: "0.5 miles away"
+      location: "Community Center, Palo Alto, CA",
+      distance: "0.5 miles away",
+      city: "Palo Alto",
+      county: "Santa Clara",
+      countryCode: "US"
     },
     activity: {
       type: "Group Activity",
@@ -180,56 +216,76 @@ const places = [
     user: {
       name: "Central Park Running Track",
       image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=200",
-      location: "Central Park",
-      distance: "0.8 miles away"
+      location: "Central Park, New York, NY",
+      distance: "0.8 miles away",
+      openingHours: "Mon-Sun 06:00 - 22:00",
+      rating: 4.6,
+      ratingCount: 214,
+      phone: "+1 212-310-6600"
     },
     activity: {
       type: "Running Track",
       title: "Public Running Area",
       time: "Open daily, 6:00 AM - 10:00 PM",
-      details: "400m rubberized track with water fountains and restrooms nearby. Well-lit for evening runs."
+      details: "400m rubberized track with water fountains and restrooms nearby. Well-lit for evening runs.",
+      bookingType: 'book'
     }
   },
   {
     user: {
-      name: "Downtown Fitness Expo",
+      name: "Pulse Gym Downtown",
       image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200",
-      location: "Convention Center",
-      distance: "2.3 miles away"
+      location: "123 Market St, San Jose, CA",
+      distance: "2.3 miles away",
+      openingHours: "Mon-Fri 05:00 - 23:00",
+      rating: 4.4,
+      ratingCount: 389,
+      phone: "+1 408-555-0190"
     },
     activity: {
-      type: "Fitness Event",
-      title: "Annual Fitness & Health Expo",
-      time: "May 15-17, 9:00 AM - 6:00 PM",
-      details: "Over 100 vendors, fitness workshops, and demonstrations. Tickets $15 online, $20 at the door."
+      type: "Gym",
+      title: "Membership-based Fitness Center",
+      time: "Open daily",
+      details: "Full-service gym with free weights, machines, classes, and sauna.",
+      bookingType: 'membership'
     }
   },
   {
     user: {
       name: "Community Basketball Courts",
       image: "https://images.unsplash.com/photo-1546519638-68e109acd27d?q=80&w=200",
-      location: "Riverside Park",
-      distance: "1.2 miles away"
+      location: "Riverside Park, San Jose, CA",
+      distance: "1.2 miles away",
+      openingHours: "Mon-Sun 07:00 - 21:00",
+      rating: 4.2,
+      ratingCount: 96,
+      phone: "+1 408-555-0126"
     },
     activity: {
       type: "Basketball Courts",
       title: "Public Outdoor Courts",
       time: "Open daily, dawn to dusk",
-      details: "Four full courts with new backboards and nets. Regular pickup games on weekends."
+      details: "Four full courts with new backboards and nets. Regular pickup games on weekends.",
+      bookingType: 'book'
     }
   },
   {
     user: {
       name: "City Marathon",
       image: "https://images.unsplash.com/photo-1530137073521-28ee92e8dc3c?q=80&w=200",
-      location: "City Center",
-      distance: "Downtown Area"
+      location: "City Center, San Jose, CA",
+      distance: "Downtown Area",
+      openingHours: "Event Day: 07:00 Start",
+      rating: 4.8,
+      ratingCount: 1200,
+      phone: "+1 408-555-0155"
     },
     activity: {
       type: "Running Event",
       title: "Annual City Marathon",
       time: "October 10, 7:00 AM start",
-      details: "Full marathon, half marathon, and 5K options. Flat, fast course through scenic downtown areas. Registration required."
+      details: "Full marathon, half marathon, and 5K options. Flat, fast course through scenic downtown areas. Registration required.",
+      bookingType: 'book'
     }
   }
 ];
