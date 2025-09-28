@@ -55,7 +55,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ user, activity, cardType = 
           <ImageWithFallback
             src={user.image}
             alt={user.name}
-            className="w-16 h-16 triangular-avatar object-cover shadow-lg"
+            className="w-20 h-20 triangular-avatar object-cover shadow-lg"
           />
         </div>
 
