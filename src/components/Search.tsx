@@ -33,85 +33,91 @@ const activities = [
   {
     user: {
       name: "Sarah Johnson",
+      age: 29,
       image: "https://i.pravatar.cc/150?img=33",
-      location: "Central Park",
-      distance: "0.8 miles away"
+      location: "Stockholm, Stockholm County, SE",
+      distance: "1.2 km"
     },
     activity: {
       type: "Running",
       title: "Morning Jog Buddy Needed",
-      time: "Weekdays, 6:30 AM - 7:30 AM",
-      details: "Looking for someone to join my morning runs. I usually do 3-5 miles at a moderate pace. Great way to start the day!"
+      time: "Weekdays, 06:30 - 07:30",
+      details: "Looking for someone to join my morning runs. I usually do 3-5 km at a moderate pace."
     }
   },
   {
     user: {
       name: "Mike Chen",
+      age: 35,
       image: "https://i.pravatar.cc/150?img=12",
-      location: "Fitness Center",
-      distance: "1.2 miles away"
+      location: "Hägersten, Stockholm County, SE",
+      distance: "2.0 km"
     },
     activity: {
-      type: "Gym Workout",
+      type: "Gym",
       title: "Strength Training Partner",
-      time: "Mon/Wed/Fri, 5:30 PM - 7:00 PM",
-      details: "Looking for a spotter and someone to push me during weight training. Intermediate level, focusing on progressive overload."
+      time: "Mon/Wed/Fri, 17:30 - 19:30",
+      details: "Looking for a spotter and someone to push me during weight training. Intermediate level."
     }
   },
   {
     user: {
       name: "Emma Wilson",
+      age: 27,
       image: "https://i.pravatar.cc/150?img=5",
-      location: "Lakeside Park",
-      distance: "2.5 miles away"
+      location: "Solna, Stockholm County, SE",
+      distance: "3.1 km"
     },
     activity: {
       type: "Yoga",
       title: "Outdoor Yoga Sessions",
-      time: "Weekends, 9:00 AM - 10:30 AM",
-      details: "I organize small group yoga sessions by the lake. All levels welcome! Bring your own mat and enjoy nature while improving flexibility."
+      time: "Weekends, 09:00 - 10:30",
+      details: "Small group yoga by the lake. All levels welcome! Bring your mat."
     }
   },
   {
     user: {
       name: "David Rodriguez",
+      age: 32,
       image: "https://i.pravatar.cc/150?img=67",
-      location: "City Trails",
-      distance: "1.7 miles away"
+      location: "Södermalm, Stockholm County, SE",
+      distance: "1.7 km"
     },
     activity: {
       type: "Cycling",
       title: "Weekend Cycling Group",
-      time: "Saturdays, 7:00 AM - 10:00 AM",
-      details: "Moderate-paced group ride covering 25-30 miles. We make stops for coffee and always wait for everyone. Road bikes recommended."
+      time: "Saturdays, 07:00 - 10:00",
+      details: "Moderate-paced 25-30 km ride with a coffee stop. No-drop policy."
     }
   },
   {
     user: {
       name: "Jennifer Lee",
+      age: 31,
       image: "https://i.pravatar.cc/150?img=45",
-      location: "Mountain View",
-      distance: "3.9 miles away"
+      location: "Nacka, Stockholm County, SE",
+      distance: "4.3 km"
     },
     activity: {
       type: "Hiking",
       title: "Sunrise Mountain Hikes",
-      time: "Sundays, 5:30 AM - 9:30 AM",
-      details: "Early morning hikes to catch the sunrise from mountain peaks. Moderate difficulty, about 5-7 miles round trip with elevation gain."
+      time: "Sundays, 05:30 - 09:30",
+      details: "Early morning hikes to catch the sunrise. 5-7 km round trip with elevation."
     }
   },
   {
     user: {
       name: "Alex Thomas",
+      age: 28,
       image: "https://i.pravatar.cc/150?img=68",
-      location: "Community Center",
-      distance: "0.5 miles away"
+      location: "Vasastan, Stockholm County, SE",
+      distance: "0.8 km"
     },
     activity: {
       type: "Basketball",
       title: "Pickup Basketball Games",
-      time: "Tuesdays & Thursdays, 6:00 PM - 8:00 PM",
-      details: "Regular pickup games at the community center. All skill levels welcome. We usually play 3v3 or 5v5 depending on turnout."
+      time: "Tue & Thu, 18:00 - 20:00",
+      details: "Regular pickup games at the community center. All skill levels welcome."
     }
   }
 ];
@@ -121,56 +127,56 @@ const groups = [
     user: {
       name: "Weekend Runners Club",
       image: "https://images.unsplash.com/photo-1546484959-f9a53db89f9b?w=200&h=200&fit=crop&crop=faces",
-      location: "City Trails",
-      distance: "1.7 miles away"
+      location: "Kungsholmen, Stockholm County, SE",
+      distance: "1.7 km"
     },
     activity: {
-      type: "Group Activity",
-      title: "Morning Jog Buddy Needed",
-      time: "Weekdays, 6:30 AM - 7:30 AM",
-      details: "Looking for friendly runners to join 3-5 mile morning runs at a conversational pace. All levels welcome."
+      type: "Running",
+      title: "Morning Jog Buddies",
+      time: "Weekdays, 06:30 - 07:30",
+      details: "Friendly 3-5 km runs at conversational pace. All levels welcome."
     }
   },
   {
     user: {
       name: "Park Yoga Collective",
       image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&crop=faces",
-      location: "Lakeside Park",
-      distance: "2.5 miles away"
+      location: "Långholmen, Stockholm County, SE",
+      distance: "2.5 km"
     },
     activity: {
-      type: "Group Activity",
+      type: "Yoga",
       title: "Outdoor Yoga Sessions",
-      time: "Weekends, 9:00 AM - 10:30 AM",
-      details: "Relaxed, beginner-friendly yoga by the lake. Bring your mat and water. Group size 6-10."
+      time: "Weekends, 09:00 - 10:30",
+      details: "Beginner-friendly yoga by the lake. Bring your mat and water."
     }
   },
   {
     user: {
       name: "City Cyclists",
       image: "https://images.unsplash.com/photo-1520975954732-35dd22a4b0bb?w=200&h=200&fit=crop&crop=faces",
-      location: "Downtown Plaza",
-      distance: "1.3 miles away"
+      location: "Norrmalm, Stockholm County, SE",
+      distance: "1.3 km"
     },
     activity: {
-      type: "Group Activity",
+      type: "Cycling",
       title: "Weekend Cycling Group",
-      time: "Saturdays, 7:00 AM - 10:00 AM",
-      details: "Moderate-paced 25-30 mile ride with coffee stop. Road bikes recommended. No-drop policy."
+      time: "Saturdays, 07:00 - 10:00",
+      details: "25-30 km ride with coffee stop. No-drop policy."
     }
   },
   {
     user: {
       name: "Community Hoopers",
       image: "https://images.unsplash.com/photo-1521417531059-74247bdfb7a9?w=200&h=200&fit=crop&crop=faces",
-      location: "Community Center",
-      distance: "0.5 miles away"
+      location: "Östermalm, Stockholm County, SE",
+      distance: "0.8 km"
     },
     activity: {
-      type: "Group Activity",
+      type: "Basketball",
       title: "Pickup Basketball Games",
-      time: "Tues & Thurs, 6:00 PM - 8:00 PM",
-      details: "Casual 3v3 and 5v5 runs. All skill levels welcome. Bring a light and dark shirt."
+      time: "Tue & Thu, 18:00 - 20:00",
+      details: "Casual 3v3 and 5v5 runs. All skill levels welcome."
     }
   }
 ];
@@ -178,58 +184,66 @@ const groups = [
 const places = [
   {
     user: {
-      name: "Central Park Running Track",
-      image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=200",
-      location: "Central Park",
-      distance: "0.8 miles away"
+      name: "Badmintonstadion",
+      image: "https://images.unsplash.com/photo-1543746918-1bfd70c2d2b8?q=80&w=800",
+      location: "Hammarby Slussväg 4, 116 41 Stockholm SE",
+      distance: "2.0 km"
     },
     activity: {
-      type: "Running Track",
-      title: "Public Running Area",
-      time: "Open daily, 6:00 AM - 10:00 PM",
-      details: "400m rubberized track with water fountains and restrooms nearby. Well-lit for evening runs."
+      type: "Badminton",
+      title: "Indoor Courts",
+      address: "Hammarby Slussväg 4, 116 41 Stockholm SE",
+      openingHours: "Daily 06:00 - 23:00",
+      rating: 4,
+      action: 'book'
     }
   },
   {
     user: {
-      name: "Downtown Fitness Expo",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200",
-      location: "Convention Center",
-      distance: "2.3 miles away"
+      name: "Nordic Fitness Club",
+      image: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=800",
+      location: "Sveavägen 12, 111 57 Stockholm SE",
+      distance: "1.1 km"
     },
     activity: {
-      type: "Fitness Event",
-      title: "Annual Fitness & Health Expo",
-      time: "May 15-17, 9:00 AM - 6:00 PM",
-      details: "Over 100 vendors, fitness workshops, and demonstrations. Tickets $15 online, $20 at the door."
+      type: "Gym",
+      title: "Premium Fitness Center",
+      address: "Sveavägen 12, 111 57 Stockholm SE",
+      openingHours: "Mon-Fri 06:00 - 22:00",
+      rating: 5,
+      action: 'membership'
     }
   },
   {
     user: {
-      name: "Community Basketball Courts",
-      image: "https://images.unsplash.com/photo-1546519638-68e109acd27d?q=80&w=200",
-      location: "Riverside Park",
-      distance: "1.2 miles away"
+      name: "Riverside Basketball Courts",
+      image: "https://images.unsplash.com/photo-1546519638-68e109acd27d?q=80&w=800",
+      location: "Riverside Park, 112 20 Stockholm SE",
+      distance: "1.2 km"
     },
     activity: {
-      type: "Basketball Courts",
-      title: "Public Outdoor Courts",
-      time: "Open daily, dawn to dusk",
-      details: "Four full courts with new backboards and nets. Regular pickup games on weekends."
+      type: "Basketball",
+      title: "Outdoor Courts",
+      address: "Riverside Park, 112 20 Stockholm SE",
+      openingHours: "Dawn to Dusk",
+      rating: 3,
+      action: 'reserve'
     }
   },
   {
     user: {
-      name: "City Marathon",
-      image: "https://images.unsplash.com/photo-1530137073521-28ee92e8dc3c?q=80&w=200",
-      location: "City Center",
-      distance: "Downtown Area"
+      name: "City Marathon Expo",
+      image: "https://images.unsplash.com/photo-1530137073521-28ee92e8dc3c?q=80&w=800",
+      location: "Sergels Torg, 111 57 Stockholm SE",
+      distance: "Downtown"
     },
     activity: {
-      type: "Running Event",
-      title: "Annual City Marathon",
-      time: "October 10, 7:00 AM start",
-      details: "Full marathon, half marathon, and 5K options. Flat, fast course through scenic downtown areas. Registration required."
+      type: "Running",
+      title: "Race Pack Pickup",
+      address: "Sergels Torg, 111 57 Stockholm SE",
+      openingHours: "Oct 10, 07:00 start",
+      rating: 5,
+      action: 'reserve'
     }
   }
 ];
