@@ -71,7 +71,7 @@ const combineDateTime = (date: Date, time: string) => {
 };
 
 export const CalendarEventsProvider: React.FC<{
-  children: React.ReactNode;
+  children: ReactNode;
 }> = ({ children }) => {
   const [events, setEvents] = useState<CalendarEvent[]>(() =>
     sortEvents(initialCalendarEvents),
