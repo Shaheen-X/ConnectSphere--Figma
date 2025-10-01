@@ -45,7 +45,7 @@ export interface EventTemplate {
 export interface ConnectedUser {
   id: string;
   name: string;
-  subtitle?: ReactNode;
+  subtitle?: string;
   avatar: string;
   isRecentMatch?: boolean;
 }
