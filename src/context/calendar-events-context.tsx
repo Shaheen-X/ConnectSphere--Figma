@@ -6,7 +6,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { toast } from 'sonner@2.0.3';
 
 import {
   type CalendarEvent,
