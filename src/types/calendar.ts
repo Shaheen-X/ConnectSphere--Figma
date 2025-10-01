@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 export type EventType = 'one-to-one' | 'group';
 
 export type EventStatus = 'upcoming' | 'completed' | 'canceled';
