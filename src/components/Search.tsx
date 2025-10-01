@@ -335,26 +335,30 @@ export function Search() {
   };
 
   const getCurrentItems = () => {
+    if (activeTab === "partners") {
+      return filteredPartners;
+    }
+
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    
-    if (activeTab === "partners") {
-      return filteredPartners.slice(indexOfFirstItem, indexOfLastItem);
-    } else if (activeTab === "groups") {
+
+    if (activeTab === "groups") {
       return filteredGroups.slice(indexOfFirstItem, indexOfLastItem);
-    } else {
-      return filteredPlaces.slice(indexOfFirstItem, indexOfLastItem);
     }
+
+    return filteredPlaces.slice(indexOfFirstItem, indexOfLastItem);
   };
 
   const getTotalPages = () => {
     if (activeTab === "partners") {
-      return Math.ceil(filteredPartners.length / itemsPerPage);
-    } else if (activeTab === "groups") {
-      return Math.ceil(filteredGroups.length / itemsPerPage);
-    } else {
-      return Math.ceil(filteredPlaces.length / itemsPerPage);
+      return 1;
     }
+
+    if (activeTab === "groups") {
+      return Math.ceil(filteredGroups.length / itemsPerPage);
+    }
+
+    return Math.ceil(filteredPlaces.length / itemsPerPage);
   };
 
   const currentItems = getCurrentItems();
@@ -461,7 +465,7 @@ export function Search() {
                     ))}
                   </div>
                   
-                  {totalPages > 1 && (
+                  {activeTab !== 'partners' && totalPages > 1 && (
                     <Pagination className="mt-6">
                       <PaginationContent>
                         {currentPage > 1 && (
