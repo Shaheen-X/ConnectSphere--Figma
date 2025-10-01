@@ -29,6 +29,21 @@ export interface CalendarEvent {
   notes?: string;
 }
 
+export interface NewEventInput {
+  title: string;
+  type: EventType;
+  date: Date;
+  time: string;
+  location: string;
+  description: string;
+  attendees: EventAttendee[];
+  maxParticipants: number;
+  tags: string[];
+  image?: string;
+  recurrence?: RecurrenceConfig;
+  templateId?: string;
+}
+
 export interface EventTemplate {
   id: string;
   title: string;
