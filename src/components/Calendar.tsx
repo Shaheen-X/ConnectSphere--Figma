@@ -169,11 +169,19 @@ export function Calendar({ onNavigate }: CalendarProps = {}) {
     }`;
 
     return (
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         onClick={(event) => {
           event.stopPropagation();
           openDayEvents(date);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            event.stopPropagation();
+            openDayEvents(date);
+          }
         }}
         className="absolute bottom-1 right-1 flex flex-col items-end gap-0.5"
         aria-label={ariaLabel}
@@ -196,7 +204,7 @@ export function Calendar({ onNavigate }: CalendarProps = {}) {
             )}
           </div>
         )}
-      </button>
+      </div>
     );
   };
 
